@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0sp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".InboxActivity">
+
+<!--        TODO(" ADD A CUSTOM TOOLBAR LAYOUT")-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56sp"
+        android:layout_gravity="top"
+        app:title="Topics"
+        android:visibility="gone"
+        app:titleMarginStart="32sp"
+        style="@style/Widget.AppCompat.Toolbar"
+        android:background="@color/colorPrimaryDark"
+        app:elevation="10dp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListMainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".InboxActivity"
+        android:layout_marginTop="0sp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
