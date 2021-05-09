@@ -1,74 +1,42 @@
 package com.example.newser;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.multidex.MultiDex;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
-import com.example.newser.adapter.adapter_resturants;
+import com.example.newser.adapter.adapter_topics;
 
 
-import com.example.newser.model.resturants;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.example.newser.model.topics;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 //import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class InboxActivity extends AppCompatActivity implements  FirebaseAuth.AuthStateListener{
 
-    adapter_resturants adapter_resturants ;
+    adapter_topics adapter_topics;
     RecyclerView ListMainView;
     Toolbar toolbar;
-    //CollapsingToolbarLayout collapsingToolbarLayout;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
                     setContentView(R.layout.activity_main);
-        // RecyclerView initialisation
+
         ListMainView = findViewById(R.id.ListMainView);
-        //add_button = findViewById(R.id.fabhome);
-        //RecyclerView initialised
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,6 +53,7 @@ public class InboxActivity extends AppCompatActivity implements  FirebaseAuth.Au
         finish();
     }
 
+    // TODO ("uncomment to add menu ")
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
@@ -101,12 +70,6 @@ public class InboxActivity extends AppCompatActivity implements  FirebaseAuth.Au
 //                startActivity(intent);
 //                return true;
 
-//            case R.id.userprofile:
-//                // User chose the "Favorite" action, mark the current item
-//                // as a favorite...
-//                Intent intent1 = new Intent(this , UserprofileActivity.class);
-//                startActivity(intent1);
-//                return true;
 
 //            case R.id.signout:
 //                // User chose the "Favorite" action, mark the current item
@@ -127,26 +90,8 @@ public class InboxActivity extends AppCompatActivity implements  FirebaseAuth.Au
 //
 //        }
 
-
-
-
-//    public void showAlertDialog() {
-//        final EditText add_description = new EditText(this);
-//        new AlertDialog.Builder(this)
-//                .setTitle("Add resturants")
-//                .setView(add_description)
-//                .setPositiveButton("Publish", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                                    Add_Description(add_description.getText().toString().trim());
-//                    }
-//                })
-//                .setNegativeButton("cancel",null)
-//                .show();
-//    }
-
 //    public void Add_Description(String description){
-//        resturants thought = new resturants(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), description);
+//        topics thought = new topics(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), description);
 //
 //        FirebaseFirestore.getInstance()
 //                .collection("notes")
@@ -170,17 +115,17 @@ protected void attachBaseContext(Context context) {
     protected void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(this);
-        if(adapter_resturants != null){
-        adapter_resturants.startListening();}
+        if(adapter_topics != null){
+        adapter_topics.startListening();}
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         FirebaseAuth.getInstance().removeAuthStateListener(this);
-        if (!(adapter_resturants == null))
+        if (!(adapter_topics == null))
         {
-            adapter_resturants.stopListening();
+            adapter_topics.stopListening();
         }
     }
 
@@ -189,18 +134,18 @@ protected void attachBaseContext(Context context) {
     public void  Initializerecyclerview(){
 
         Query query = FirebaseFirestore.getInstance()
-                .collection("resturants");
+                .collection("topics");
 
-        FirestoreRecyclerOptions<resturants> options = new FirestoreRecyclerOptions.Builder<resturants>()
-                .setQuery(query, resturants.class)
+        FirestoreRecyclerOptions<topics> options = new FirestoreRecyclerOptions.Builder<topics>()
+                .setQuery(query, topics.class)
                 .build();
 
-        adapter_resturants = new adapter_resturants( InboxActivity.this , options);
+        adapter_topics = new adapter_topics( InboxActivity.this , options);
         ListMainView.setLayoutManager(new LinearLayoutManager(InboxActivity.this));
         ListMainView.setHasFixedSize(true);
      //    ListMainView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL ));
-        ListMainView.setAdapter(adapter_resturants);
-        adapter_resturants.startListening();
+        ListMainView.setAdapter(adapter_topics);
+        adapter_topics.startListening();
 
     }
 

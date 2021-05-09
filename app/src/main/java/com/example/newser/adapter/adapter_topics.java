@@ -10,20 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.example.newser.ChatActivity;
 import com.example.newser.R;
-import com.example.newser.model.resturants;
+import com.example.newser.model.topics;
 //import com.firebase.ui.database.FirestoreRecyclerAdapter;
 //import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public  class adapter_resturants extends FirestoreRecyclerAdapter<resturants , adapter_resturants.ViewHolder1> {
+public  class adapter_topics extends FirestoreRecyclerAdapter<topics, adapter_topics.ViewHolder1> {
 
     Context context;
-    public adapter_resturants(Context context, @NonNull FirestoreRecyclerOptions options) {
+    public adapter_topics(Context context, @NonNull FirestoreRecyclerOptions options) {
         super(options);
         this.context = context;
     }
@@ -32,22 +30,18 @@ public  class adapter_resturants extends FirestoreRecyclerAdapter<resturants , a
     @NonNull
     @Override
     public ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder1(LayoutInflater.from(parent.getContext()).inflate(R.layout.resturant_item, parent, false));
+        return new ViewHolder1(LayoutInflater.from(parent.getContext()).inflate(R.layout.topic_item, parent, false));
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder1 holder, int position, @NonNull final resturants model) {
-        holder.displayname.setText(model.getResturantname());
-//
-//        YoYo.with(Techniques.FadeIn)
-//                .duration(600)
-//                .playOn(holder.displayname);
+    protected void onBindViewHolder(@NonNull ViewHolder1 holder, int position, @NonNull final topics model) {
+        holder.displayname.setText(model.getTopicname());
 
         holder.displayname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context , ChatActivity.class);
-                intent.putExtra("RESTURANT_NAME", model.getResturantname());
+                intent.putExtra("TOPIC_NAME", model.getTopicname());
                 context.startActivity(intent);
             }
         });
