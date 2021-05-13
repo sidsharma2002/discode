@@ -14,6 +14,7 @@ Discode is a firebase oriented app that means it used firebase service as its ma
 The data is fetched from Firestore and is viewed to the user using Firestore-recyclerview.
 
 ### THANKS FOR READING. 
+> May the force be with you
 
 
 
