@@ -20,7 +20,7 @@ The data is fetched from Firestore and is viewed to the user using Firestore-rec
 The Authentication system is used with the help of Firebase auth-ui
 
 ### THANKS FOR READING. 
-> May the force be with you
+> May the code be with you
 
 
 
