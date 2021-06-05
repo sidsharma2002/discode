@@ -18,14 +18,15 @@ import com.example.newser.model.topics;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.util.Objects;
+
 public  class adapter_topics extends FirestoreRecyclerAdapter<topics, adapter_topics.ViewHolder1> {
 
     Context context;
     public adapter_topics(Context context, @NonNull FirestoreRecyclerOptions options) {
-        super(options);
+        super(Objects.requireNonNull(options));
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -36,7 +37,6 @@ public  class adapter_topics extends FirestoreRecyclerAdapter<topics, adapter_to
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder1 holder, int position, @NonNull final topics model) {
         holder.displayname.setText(model.getTopicname());
-
         holder.displayname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

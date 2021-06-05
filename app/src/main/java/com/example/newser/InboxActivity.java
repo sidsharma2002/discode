@@ -110,13 +110,13 @@ protected void attachBaseContext(Context context) {
     MultiDex.install(this);
 }
 
-
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(this);
         if(adapter_topics != null){
-        adapter_topics.startListening();}
+        adapter_topics.startListening();
+        }
     }
 
     @Override
