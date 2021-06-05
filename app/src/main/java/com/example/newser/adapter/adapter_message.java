@@ -18,6 +18,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class adapter_message extends FirestoreRecyclerAdapter<message, adapter_message.messageViewHolder> {
 
     public adapter_message(@NonNull FirestoreRecyclerOptions<message> options) {
@@ -27,19 +29,16 @@ public class adapter_message extends FirestoreRecyclerAdapter<message, adapter_m
     @Override
     protected void onBindViewHolder(@NonNull adapter_message.messageViewHolder holder, int position, @NonNull message model) {
 
-//        YoYo.with(Techniques.FadeIn)
-//                .duration(1600)
-//                .playOn(holder.sender_text);
-//        YoYo.with(Techniques.FadeIn)
-//                .duration(1000)
-//                .playOn(holder.message_text);
-//        YoYo.with(Techniques.FadeIn)
-//                .duration(2000)
-//                .playOn(holder.time);
+        YoYo.with(Techniques.FadeIn)
+                .duration(800)
+                .playOn(holder.message_text);
+        YoYo.with(Techniques.FadeIn)
+                .duration(1200)
+                .playOn(holder.time);
 
         holder.message_text.setText(model.getMessage());
         holder.time.setText(model.getCreatedon());
-        if(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().equals(model.getSender())){
+        if(Objects.equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), model.getSender())){
             holder.sender_text.setText("you");
         } else {
             holder.sender_text.setText(model.getSender());

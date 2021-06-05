@@ -96,7 +96,7 @@ public class ChatActivity extends AppCompatActivity {
                             String message = send_edittext.getText().toString().trim();
 
                             if(! (message.equals(""))){
-                            message message1 = new message(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), message, Topic_name, new SimpleDateFormat("HH.mm.ss").format(new Date()));
+                            message message1 = new message(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), message, Topic_name, new SimpleDateFormat("HH.mm").format(new Date()));
                             addmessage(message1);
 
                             } else {
