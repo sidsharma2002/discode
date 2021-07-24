@@ -53,56 +53,7 @@ public class InboxActivity extends AppCompatActivity implements  FirebaseAuth.Au
         finish();
     }
 
-    // TODO ("uncomment to add menu ")
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.toolbar, menu);
-//        return true;
-//    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.settings:
-//                // User chose the "Settings" item, show the app settings UI...
-//                Intent intent = new Intent(this , SettingsActivity.class);
-//                startActivity(intent);
-//                return true;
-
-
-//            case R.id.signout:
-//                // User chose the "Favorite" action, mark the current item
-//                // as a favorite...
-//                AuthUI.getInstance().signOut(this)
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                StartLoginRegisterActivtiy();
-//                            }
-//                        });
-//                return true;
-
-//            default:
-//                // If we got here, the user's action was not recognized.
-//                // Invoke the superclass to handle it.
-//                return super.onOptionsItemSelected(item);
-//
-//        }
-
-//    public void Add_Description(String description){
-//        topics thought = new topics(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName(), description);
-//
-//        FirebaseFirestore.getInstance()
-//                .collection("notes")
-//                .add(thought)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                     Snackbar.make(findViewById(R.id.Main),"thought added successfully" , Snackbar.LENGTH_LONG);
-//                    }
-//                });
-//    }
 
 @Override
 protected void attachBaseContext(Context context) {
